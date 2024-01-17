@@ -8,3 +8,4 @@ Este repositorio já vem com os seguintes itens configurados
 - React
 - Eslint
 - Prettier
+- TailwindCss

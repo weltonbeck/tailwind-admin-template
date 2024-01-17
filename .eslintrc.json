@@ -13,7 +13,8 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:tailwindcss/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -22,12 +23,13 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "react", 
+    "react",
     "react-hooks",
     "eslint-plugin-import-helpers"
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "tailwindcss/enforces-shorthand": "off",
     "import-helpers/order-imports": [
       "warn",
       {

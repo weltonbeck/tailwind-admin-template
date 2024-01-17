@@ -1,3 +1,5 @@
-export default function Home() {
-  return <h1>Hello world!!</h1>
+export default function Page() {
+  return (
+    <h1 className="text-3xl font-bold text-red-600 underline">Hello world!!</h1>
+  )
 }
