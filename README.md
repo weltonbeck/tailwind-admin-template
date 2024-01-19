@@ -9,3 +9,4 @@ Este repositorio já vem com os seguintes itens configurados
 - Eslint
 - Prettier
 - TailwindCss
+- Jest
