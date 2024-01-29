@@ -10,3 +10,4 @@ Este repositorio já vem com os seguintes itens configurados
 - Prettier
 - TailwindCss
 - Jest
+- husky
