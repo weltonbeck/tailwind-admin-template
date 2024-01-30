@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 import '../styles/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Next Base Project',
-  description: 'Next Base Project',
+  title: 'Tailwind Admin Template',
+  description: 'Tailwind Admin Template',
 }
 
 export default function RootLayout({
@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body className="bg-zinc-300 font-sans">{children}</body>
     </html>
   )
 }
