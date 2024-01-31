@@ -7,12 +7,13 @@ const button = tv({
   base: 'flex items-center justify-center rounded py-2 font-medium shadow',
   variants: {
     color: {
-      primary: 'bg-sky-500 text-white hover:bg-sky-600',
-      secondary: 'bg-zinc-400 text-white hover:bg-zinc-500',
+      default: 'bg-sky-500 text-white hover:bg-sky-600',
+      primary: 'bg-primary-500 text-white hover:bg-primary-600',
       success: 'bg-teal-500 text-white hover:bg-teal-600',
       error: 'bg-rose-500 text-white hover:bg-rose-600',
+      gray: 'bg-gray-400 text-white hover:bg-gray-500',
       transparent:
-        'border border-zinc-500 bg-transparent text-zinc-500 hover:bg-zinc-200',
+        'border border-gray-500 bg-transparent text-gray-500 hover:bg-gray-200',
     },
     size: {
       sm: 'min-h-6 px-4 text-sm',
@@ -28,7 +29,7 @@ const button = tv({
   },
   defaultVariants: {
     size: 'md',
-    color: 'primary',
+    color: 'default',
     full: false,
     disabled: false,
   },
@@ -45,11 +46,12 @@ export function Button({
   color,
   full,
   disabled,
+  className,
   ...props
 }: ButtonProps) {
   return (
     <button
-      className={button({ size, color, full, disabled })}
+      className={button({ size, color, full, disabled, className })}
       disabled={disabled}
       {...props}
     >
