@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
+import { Header } from '@/components/header'
+import { Nav } from '@/components/nav'
+import { NavProvider } from '@/contexts/nav'
 
-import { Sidebar } from '@/components/sidebar'
-
-import '../../styles/globals.css'
+import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: 'Tailwind Admin Template',
@@ -16,13 +17,16 @@ export default function RestricLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className="bg-gray-100 font-sans">
-        <Sidebar />
-        <div className="flex h-screen flex-col">
-          <main className="p-4 transition-all duration-300 md:ml-52 md:pl-8">
-            {children}
-          </main>
-        </div>
+      <body className="bg-gray-300 font-sans">
+        <NavProvider>
+          <div className="flex">
+            <Nav />
+            <div className="grow">
+              <Header />
+              <main className="m-4 mt-6">{children}</main>
+            </div>
+          </div>
+        </NavProvider>
       </body>
     </html>
   )

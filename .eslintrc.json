@@ -32,14 +32,14 @@
     "import-helpers/order-imports": [
       "warn",
       {
-          "newlinesBetween": "always",
-          "groups": [
-              ["/^react/","/^next/","/^@next/"],
-              ["/^module/","/^@shared/","/^absolute/"],
-              ["/^components/"],
-              ["parent", "sibling", "index"]
-          ],
-          "alphabetize": { "order": "asc", "ignoreCase": true }
+        "newlinesBetween": "never",
+        "groups": [
+            ["/^react/","/^next/","/^@next/"],
+            ["module", "/^@shared/","absolute"],
+            ["/^contexts/","/^components/"],
+            ["parent", "sibling", "index"]
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
       }
   ]
   }
