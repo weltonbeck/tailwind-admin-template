@@ -7,7 +7,7 @@ export function CardHeader({ className, ...props }: CardHeaderProps) {
   return (
     <div
       className={twMerge(
-        'min-h-6 border-b border-gray-300 bg-gray-200 px-3 py-2',
+        'min-h-6 border-b border-gray-300 bg-gray-200 p-3 flex justify-start items-center text-gray-700',
         className,
       )}
       {...props}

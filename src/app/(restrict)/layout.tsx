@@ -17,7 +17,7 @@ export default function RestricLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className="bg-gray-300 font-sans">
+      <body className="bg-gray-300 font-sans text-gray-700">
         <NavProvider>
           <div className="flex">
             <Nav />
