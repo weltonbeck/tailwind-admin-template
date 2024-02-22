@@ -31,7 +31,7 @@ function NavItemChild({
       <Link
         data-active={active}
         href={href}
-        className="flex items-center text-sm hover:bg-gray-900 data-[active=true]:bg-gray-900"
+        className="flex items-center text-sm hover:bg-gray-900  active:bg-gray-950 data-[active=true]:bg-gray-900"
       >
         <div className="w-5 self-stretch border-r border-gray-400" />
         <div className="h-1 w-3 border-b border-gray-400" />
@@ -61,7 +61,7 @@ export function NavItem({
     <li data-active={active} className="group">
       <Link
         href={href}
-        className="flex items-center bg-gray-600 text-base group-hover:bg-gray-700 group-hover:shadow-lg group-data-[active=true]:bg-gray-700 group-data-[active=true]:shadow-lg"
+        className="flex items-center bg-gray-600 text-base group-hover:bg-gray-700 group-hover:shadow-lg group-hover:active:bg-gray-800 group-data-[active=true]:bg-gray-700 group-data-[active=true]:shadow-lg"
       >
         <div className="w-2 self-stretch group-hover:bg-primary-600 group-data-[active=true]:bg-primary-600" />
         <div className="flex w-full items-center py-2 pl-1 pr-2">

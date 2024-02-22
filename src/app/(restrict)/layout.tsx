@@ -23,7 +23,10 @@ export default function RestricLayout({
             <Nav />
             <div className="grow">
               <Header />
-              <main className="m-4 mt-6">{children}</main>
+              <main className="m-4 mt-6">
+                <div className="mb-4">Breadcrumb</div>
+                {children}
+              </main>
             </div>
           </div>
         </NavProvider>
