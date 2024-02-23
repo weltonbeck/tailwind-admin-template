@@ -5,8 +5,8 @@ import { Input } from '@/components/input'
 
 export default function Homepage() {
   return (
-    <main className="flex h-screen items-center justify-center">
-      <Card.Root>
+    <main className="flex h-screen items-center justify-center bg-gray-400">
+      <Card.Root className="min-w-[320px]">
         <Card.Content>
           <h2 className="mb-3 text-center text-2xl font-bold">Login</h2>
           <form action="/dashboard">

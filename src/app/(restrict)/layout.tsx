@@ -17,19 +17,21 @@ export default function RestricLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className="bg-gray-300 font-sans text-gray-700">
-        <NavProvider>
-          <div className="flex">
-            <Nav />
-            <div className="grow">
-              <Header />
-              <main className="m-4 mt-6">
-                <div className="mb-4">Breadcrumb</div>
-                {children}
-              </main>
+      <body className="font-sans text-gray-700">
+        <section className="bg-gray-300">
+          <NavProvider>
+            <div className="flex">
+              <Nav />
+              <div className="grow">
+                <Header />
+                <main className="m-4 mt-6">
+                  <div className="mb-4">Breadcrumb</div>
+                  {children}
+                </main>
+              </div>
             </div>
-          </div>
-        </NavProvider>
+          </NavProvider>
+        </section>
       </body>
     </html>
   )

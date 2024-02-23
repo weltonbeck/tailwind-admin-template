@@ -6,7 +6,7 @@ import { TableHead } from './tableHead'
 export type TableProps = ComponentProps<'table'> & {
   cols?: {
     title: string
-    field: string
+    field?: string
     filter?: boolean
   }[]
   rows?: React.ReactNode[][]

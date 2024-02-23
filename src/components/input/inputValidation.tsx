@@ -1,12 +1,15 @@
+import { ComponentProps } from 'react'
 import { AlertCircleIcon, CheckCircleIcon } from 'lucide-react'
+import { twMerge } from 'tailwind-merge'
 
-export type InputValidationProps = {
+export type InputValidationProps = ComponentProps<'i'> & {
   showIcons?: boolean
   error?: boolean | string | string[]
   success?: boolean | string | string[]
 }
 
 export function InputValidation({
+  className,
   error,
   success,
   showIcons = true,
@@ -16,7 +19,12 @@ export function InputValidation({
       {error && (
         <>
           {showIcons && (
-            <i className="absolute -ml-8 mt-2 text-rose-500">
+            <i
+              className={twMerge(
+                'absolute right-0 top-0 pr-[8px] pt-[8px] text-rose-500',
+                className,
+              )}
+            >
               <AlertCircleIcon size={20} />
             </i>
           )}
@@ -28,7 +36,12 @@ export function InputValidation({
       {success && (
         <>
           {showIcons && (
-            <i className="absolute -ml-8 mt-2 text-teal-500">
+            <i
+              className={twMerge(
+                'absolute right-0 top-0 pr-[8px] pt-[8px] text-teal-500',
+                className,
+              )}
+            >
               <CheckCircleIcon size={20} />
             </i>
           )}

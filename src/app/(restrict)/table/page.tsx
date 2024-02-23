@@ -6,18 +6,27 @@ import { Pagination } from '@/components/pagination'
 import { Table } from '@/components/table'
 import { ClipboardListIcon, SearchIcon } from 'lucide-react'
 
-export default function TablePage({
-  searchParams,
-}: {
+type searchParamsProps = {
   searchParams: { page?: string; orderField?: string; orderDirection?: string }
-}) {
-  const currentPage = searchParams.page ? Number(searchParams.page) : 1
+}
 
-  const data = [0, 1, 2, 3, 4, 5, 6].map((value) => [
-    value,
-    `Produto ${value}`,
-    `Categ ${value}`,
-  ])
+export default async function TablePage({ searchParams }: searchParamsProps) {
+  const currentPage = searchParams.page ? Number(searchParams.page) : 1
+  const limit = 10
+
+  const response = await fetch(
+    'https://pokeapi.co/api/v2/pokemon?' +
+      new URLSearchParams({
+        limit: limit.toString(),
+        offset: (limit * (currentPage - 1)).toString(),
+      }),
+    {
+      next: {
+        tags: ['get-list'],
+      },
+    },
+  )
+  const data = await response.json()
 
   return (
     <Card.Root className="min-h-full">
@@ -38,7 +47,7 @@ export default function TablePage({
             <Input.Input
               type="text"
               name="search"
-              className="rounded-r-none"
+              className="min-h-11 rounded-r-none"
               placeholder="Buscar..."
             />
             <Button type="submit" className="rounded-l-none">
@@ -60,17 +69,19 @@ export default function TablePage({
               filter: true,
             },
             {
-              field: 'category_id',
-              title: 'categoria',
+              title: 'Link',
               filter: false,
             },
           ]}
-          rows={data}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          rows={data.results.map((value: any, index: number) => {
+            return [index, value.name, value.url]
+          })}
         />
         <Pagination
           pagination={{
             currentPage,
-            limitPerPage: 10,
+            limitPerPage: limit,
             totalPages: 10,
             totalItens: 95,
           }}

@@ -12,7 +12,7 @@ export function InputTextarea({
   ...props
 }: InputTextareaProps) {
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <textarea
         rows={rows}
         data-error={!!error}

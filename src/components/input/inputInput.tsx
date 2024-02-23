@@ -11,7 +11,7 @@ export function InputInput({
   ...props
 }: InputInputProps) {
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <input
         data-error={!!error}
         data-success={!!success}
