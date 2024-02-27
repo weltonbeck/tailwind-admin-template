@@ -71,7 +71,7 @@ export function NavItem({
             <>
               <PlusSquareIcon
                 size={15}
-                className="ml-auto  group-hover:hidden group-data-[active=true]:hidden"
+                className="ml-auto  hover:hidden group-data-[active=true]:hidden"
               />
               <MinusSquareIcon
                 size={15}

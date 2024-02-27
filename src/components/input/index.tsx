@@ -4,6 +4,7 @@ import { InputGroup } from './inputGroup'
 import { InputInput } from './inputInput'
 import { InputLabel } from './inputLabel'
 import { InputRadio } from './inputRadio'
+import { InputSelect } from './inputSelect'
 import { InputTextarea } from './inputTextarea'
 
 export const Input = {
@@ -14,4 +15,5 @@ export const Input = {
   Fieldset: InputFieldset,
   Checkbox: InputCheckbox,
   Radio: InputRadio,
+  Select: InputSelect,
 }

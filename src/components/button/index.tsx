@@ -1,4 +1,6 @@
+'use client'
 import { ComponentPropsWithoutRef } from 'react'
+import { useFormStatus } from 'react-dom'
 import { Slot } from '@radix-ui/react-slot'
 import { Loader } from 'lucide-react'
 import { tv, VariantProps } from 'tailwind-variants'
@@ -72,6 +74,7 @@ export function Button({
   className,
   ...props
 }: ButtonProps) {
+  const { pending } = useFormStatus()
   const Comp = asChild ? Slot : 'button'
   return (
     <Comp
@@ -84,10 +87,14 @@ export function Button({
         disabled,
         className,
       })}
-      disabled={disabled}
+      disabled={disabled || (props.type === 'submit' && pending) || loading}
       {...props}
     >
-      {loading ? <Loader className="animate-spin" /> : props.children}
+      {(props.type === 'submit' && pending) || loading ? (
+        <Loader className="animate-spin" />
+      ) : (
+        props.children
+      )}
     </Comp>
   )
 }

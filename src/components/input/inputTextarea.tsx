@@ -1,4 +1,6 @@
+'use client'
 import { ComponentProps } from 'react'
+import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { InputValidation, InputValidationProps } from './inputValidation'
 
@@ -9,8 +11,11 @@ export function InputTextarea({
   success,
   error,
   className,
+  name,
   ...props
 }: InputTextareaProps) {
+  const formContext = useFormContext()
+
   return (
     <div className="relative w-full">
       <textarea
@@ -22,6 +27,7 @@ export function InputTextarea({
           className,
         )}
         {...props}
+        {...(name && formContext ? { ...formContext.register(name) } : {})}
       ></textarea>
       <InputValidation error={error} success={success} />
     </div>

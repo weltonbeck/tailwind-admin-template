@@ -1,23 +1,19 @@
 'use client'
 import { ComponentProps } from 'react'
-import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { InputValidation, InputValidationProps } from './inputValidation'
 
-type InputInputProps = ComponentProps<'input'> & InputValidationProps
+type InputSelectProps = ComponentProps<'select'> & InputValidationProps
 
-export function InputInput({
+export function InputSelect({
   success,
   error,
   className,
-  name,
   ...props
-}: InputInputProps) {
-  const formContext = useFormContext()
-
+}: InputSelectProps) {
   return (
     <div className="relative w-full">
-      <input
+      <select
         data-error={!!error}
         data-success={!!success}
         className={twMerge(
@@ -25,7 +21,6 @@ export function InputInput({
           className,
         )}
         {...props}
-        {...(name && formContext ? { ...formContext.register(name) } : {})}
       />
       <InputValidation error={error} success={success} />
     </div>
