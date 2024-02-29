@@ -1,9 +1,9 @@
 import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type InputLabelProps = ComponentProps<'label'>
+type FormLabelProps = ComponentProps<'label'>
 
-export function InputLabel({ className, ...props }: InputLabelProps) {
+export function FormLabel({ className, ...props }: FormLabelProps) {
   return (
     <label
       className={twMerge('mb-1 text-sm font-medium text-gray-800', className)}

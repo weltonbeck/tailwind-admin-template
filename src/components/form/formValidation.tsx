@@ -2,18 +2,18 @@ import { ComponentProps } from 'react'
 import { AlertCircleIcon, CheckCircleIcon } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
 
-export type InputValidationProps = ComponentProps<'i'> & {
+export type FormValidationProps = ComponentProps<'i'> & {
   showIcons?: boolean
   error?: boolean | string | string[]
   success?: boolean | string | string[]
 }
 
-export function InputValidation({
+export function FormValidation({
   className,
   error,
   success,
   showIcons = true,
-}: InputValidationProps) {
+}: FormValidationProps) {
   return (
     <>
       {error && (

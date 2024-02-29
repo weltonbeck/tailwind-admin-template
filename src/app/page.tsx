@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/button'
 import { Card } from '@/components/card'
-import { Input } from '@/components/input'
+import { Form } from '@/components/form'
 
 export default function Homepage() {
   return (
@@ -11,12 +11,12 @@ export default function Homepage() {
           <h2 className="mb-3 text-center text-2xl font-bold">Login</h2>
           <form action="/dashboard">
             <div className="mb-2">
-              <Input.Label htmlFor="email">E-mail:</Input.Label>
-              <Input.Input id="email" type="text" />
+              <Form.Label htmlFor="email">E-mail:</Form.Label>
+              <Form.Input id="email" type="text" />
             </div>
             <div className="mb-2">
-              <Input.Label htmlFor="password">Senha:</Input.Label>
-              <Input.Input id="password" type="password" />
+              <Form.Label htmlFor="password">Senha:</Form.Label>
+              <Form.Input id="password" type="password" />
             </div>
 
             <Button type="submit" color="primary" full className="my-4">

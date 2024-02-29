@@ -70,7 +70,7 @@ export default function Dashboard() {
             Botão gray
           </Button>
         </div>
-        <div className="flex flex-wrap items-start justify-center">
+        <div className="mb-8 flex flex-wrap items-start justify-center">
           <Button outline="gray" rounded="sm" className="m-1">
             <LayoutDashboardIcon size={20} />
           </Button>
@@ -81,6 +81,10 @@ export default function Dashboard() {
             <LayoutDashboardIcon size={30} />
           </Button>
         </div>
+        <div className="mb-8 flex flex-wrap items-start justify-center">
+          <Button loading />
+        </div>
+
         <hr className="my-8 border-primary-500" />
       </Card.Content>
       <Card.Footer>

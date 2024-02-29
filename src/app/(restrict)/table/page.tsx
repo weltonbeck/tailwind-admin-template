@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/button'
 import { Card } from '@/components/card'
-import { Input } from '@/components/input'
+import { Form } from '@/components/form'
 import { Pagination } from '@/components/pagination'
 import { Table } from '@/components/table'
 import { ClipboardListIcon, SearchIcon } from 'lucide-react'
@@ -44,7 +44,7 @@ export default async function TablePage({ searchParams }: searchParamsProps) {
             </Button>
           </div>
           <form className="flex" method="get">
-            <Input.Input
+            <Form.Input
               type="text"
               name="search"
               className="min-h-11 rounded-r-none"

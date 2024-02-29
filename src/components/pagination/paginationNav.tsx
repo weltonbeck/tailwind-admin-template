@@ -30,7 +30,7 @@ function PaginationNavItem({
     <li
       data-active={active}
       className={
-        'border border-gray-300 bg-white text-gray-500 transition-colors first-of-type:rounded-s-lg last-of-type:rounded-e-lg hover:bg-gray-100 hover:text-gray-700 active:bg-gray-200 data-[active=true]:bg-primary-100 data-[active=true]:text-primary-600 data-[active=true]:hover:bg-primary-200 data-[active=true]:active:bg-primary-300'
+        'border border-gray-300 bg-white text-gray-500 transition-colors first-of-type:rounded-s-lg -of-type:rounded-e-lg hover:bg-gray-100 hover:text-gray-700 active:bg-gray-200 data-[active=true]:bg-primary-100 data-[active=true]:text-primary-600 data-[active=true]:hover:bg-primary-200 data-[active=true]:active:bg-primary-300'
       }
     >
       <Link

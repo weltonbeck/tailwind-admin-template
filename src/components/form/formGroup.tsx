@@ -1,9 +1,9 @@
 import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type InputGroupProps = ComponentProps<'div'>
+type FormGroupProps = ComponentProps<'div'>
 
-export function InputGroup({ className, ...props }: InputGroupProps) {
+export function FormGroup({ className, ...props }: FormGroupProps) {
   return (
     <div className={twMerge('mb-2', className)} {...props}>
       {props.children}

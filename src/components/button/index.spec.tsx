@@ -11,11 +11,9 @@ describe('Test Button Component', () => {
   it('should be able to click button', async () => {
     const onClickButton = jest.fn()
     render(<Button onClick={onClickButton}>Btn</Button>)
-
     const testButton = screen.getByRole('button')
     expect(testButton).toBeInTheDocument()
     await userEvent.click(testButton)
-
     expect(onClickButton).toHaveBeenCalled()
   })
 
@@ -26,11 +24,22 @@ describe('Test Button Component', () => {
         Btn
       </Button>,
     )
-
     const testButton = screen.getByRole('button')
     expect(testButton).toBeInTheDocument()
     await userEvent.click(testButton)
+    expect(onClickButton).not.toHaveBeenCalled()
+  })
 
+  it('should not be able to click loading button', async () => {
+    const onClickButton = jest.fn()
+    render(
+      <Button loading onClick={onClickButton}>
+        Btn
+      </Button>,
+    )
+    const testButton = screen.getByRole('button')
+    expect(testButton).toBeInTheDocument()
+    await userEvent.click(testButton)
     expect(onClickButton).not.toHaveBeenCalled()
   })
 })

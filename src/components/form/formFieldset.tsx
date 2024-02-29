@@ -1,19 +1,19 @@
 import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { InputValidation, InputValidationProps } from './inputValidation'
+import { FormValidation, FormValidationProps } from './formValidation'
 
-type InputFieldsetProps = ComponentProps<'fieldset'> &
-  InputValidationProps & {
+type FormFieldsetProps = ComponentProps<'fieldset'> &
+  FormValidationProps & {
     legend?: string
   }
 
-export function InputFieldset({
+export function FormFieldset({
   legend,
   success,
   error,
   className,
   ...props
-}: InputFieldsetProps) {
+}: FormFieldsetProps) {
   return (
     <div className="relative w-full">
       <fieldset
@@ -32,7 +32,7 @@ export function InputFieldset({
         )}
         {props.children}
       </fieldset>
-      <InputValidation error={error} success={success} className="pt-[16px]" />
+      <FormValidation error={error} success={success} className="pt-[16px]" />
     </div>
   )
 }

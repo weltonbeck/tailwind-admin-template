@@ -1,20 +1,29 @@
 'use client'
+// import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Button } from '@/components/button'
 import { Card } from '@/components/card'
-import { Input } from '@/components/input'
+import { Form } from '@/components/form'
 import { FilePenLineIcon } from 'lucide-react'
 
 export default function FormPage() {
-  const methods = useForm()
+  const methods = useForm({
+    // defaultValues: {
+    //   text: 'valor de teste',
+    //   textarea: 'valor de teste',
+    //   select: '2',
+    //   checkbox: true,
+    //   multiCheckbox: '2',
+    //   radio: true,
+    //   multiRadio: '2',
+    // },
+  })
 
-  const actionSubmit: () => void = methods.handleSubmit(
-    async (data: unknown) => {
-      console.log(data)
-      await new Promise((resolve) => setInterval(resolve, 3000))
-      console.log('foi')
-    },
-  )
+  async function onSubmit(data: unknown) {
+    console.log(data)
+    // await new Promise((resolve) => setInterval(resolve, 3000))
+    // console.log('foi')
+  }
 
   return (
     <Card.Root className="min-h-full">
@@ -26,83 +35,91 @@ export default function FormPage() {
       </Card.Header>
       <Card.Content className="mb-10">
         <FormProvider {...methods}>
-          <form action={actionSubmit}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
             <h2 className="mb-8 text-center text-xl font-bold uppercase">
               Tipos de inputs
             </h2>
 
             <div className="grid grid-cols-2 gap-4">
-              <Input.Group>
-                <Input.Label htmlFor="text">Text:</Input.Label>
-                <Input.Input id="text" name="text" />
-              </Input.Group>
+              <Form.Group>
+                <Form.Label htmlFor="text">Text:</Form.Label>
+                <Form.Input id="text" name="text" />
+              </Form.Group>
 
-              <Input.Group>
-                <Input.Label htmlFor="textarea">Textarea:</Input.Label>
-                <Input.Textarea id="textarea" name="textarea" />
-              </Input.Group>
+              <Form.Group>
+                <Form.Label htmlFor="textarea">Textarea:</Form.Label>
+                <Form.Textarea id="textarea" name="textarea" />
+              </Form.Group>
 
-              <Input.Group>
-                <Input.Label htmlFor="checkbox">Checkbox unico:</Input.Label>
-                <Input.Checkbox id="checkbox" value="teste" name="checkbox" />
-              </Input.Group>
+              <Form.Group>
+                <Form.Label htmlFor="checkbox">Checkbox unico:</Form.Label>
+                <Form.Checkbox id="checkbox" name="checkbox" />
+              </Form.Group>
 
-              <Input.Group>
-                <Input.Fieldset legend="Checkbox" className="grid-cols-3">
-                  <Input.Checkbox
+              <Form.Group>
+                <Form.Fieldset legend="Checkbox" className="grid-cols-3">
+                  <Form.Checkbox
                     id="checkbox01"
-                    value="teste1"
+                    value="1"
                     label="valor 01"
                     name="multiCheckbox"
                   />
-                  <Input.Checkbox
+                  <Form.Checkbox
                     id="checkbox02"
-                    value="teste2"
+                    value="2"
                     label="valor 02"
                     name="multiCheckbox"
-                    defaultChecked
                   />
-                  <Input.Checkbox
+                  <Form.Checkbox
                     id="checkbox03"
-                    value="teste3"
+                    value="3"
                     label="valor 03"
                     name="multiCheckbox"
                   />
-                </Input.Fieldset>
-              </Input.Group>
+                </Form.Fieldset>
+              </Form.Group>
 
-              <Input.Group>
-                <Input.Label htmlFor="radio">Radio unico:</Input.Label>
-                <Input.Radio id="radio" value="teste" name="radio" />
-              </Input.Group>
+              <Form.Group>
+                <Form.Label htmlFor="radio">Radio unico:</Form.Label>
+                <Form.Radio id="radio" name="radio" />
+              </Form.Group>
 
-              <Input.Group>
-                <Input.Fieldset legend="Radio" className="grid-cols-3">
-                  <Input.Radio
+              <Form.Group>
+                <Form.Fieldset legend="Radio" className="grid-cols-3">
+                  <Form.Radio
                     id="radio01"
                     label="valor 01"
-                    value="teste1"
+                    value="1"
                     name="multiRadio"
                   />
-                  <Input.Radio
+                  <Form.Radio
                     id="radio02"
                     label="valor 02"
-                    value="teste2"
+                    value="2"
                     name="multiRadio"
                   />
-                  <Input.Radio
+                  <Form.Radio
                     id="radio03"
                     label="valor 03"
-                    value="teste3"
+                    value="3"
                     name="multiRadio"
                   />
-                </Input.Fieldset>
-              </Input.Group>
+                </Form.Fieldset>
+              </Form.Group>
 
-              <Input.Group>
-                <Input.Label htmlFor="select">Select:</Input.Label>
-                <Input.Select id="select" />
-              </Input.Group>
+              <Form.Group>
+                <Form.Label htmlFor="select">Select:</Form.Label>
+                <Form.Select
+                  id="select"
+                  name="select"
+                  options={[1, 2, 3].map((value) => {
+                    return {
+                      value: String(value),
+                      label: `teste ${value}`,
+                    }
+                  })}
+                />
+              </Form.Group>
             </div>
             <div className="mt-10 flex justify-center">
               <Button type="submit">Enviar</Button>
@@ -118,82 +135,101 @@ export default function FormPage() {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Input.Group>
-              <Input.Input placeholder="teste" error={['teste msg com erro']} />
-            </Input.Group>
-            <Input.Group>
-              <Input.Textarea error />
-            </Input.Group>
-            <Input.Group>
-              <Input.Checkbox
+            <Form.Group>
+              <Form.Input placeholder="teste" error={['teste msg com erro']} />
+            </Form.Group>
+            <Form.Group>
+              <Form.Textarea error />
+            </Form.Group>
+            <Form.Group>
+              <Form.Checkbox
                 label="valor checkbox"
                 error="teste msg com erro"
               />
-            </Input.Group>
-            <Input.Group>
-              <Input.Fieldset
+            </Form.Group>
+            <Form.Group>
+              <Form.Fieldset
                 legend="Checkbox"
                 className="grid-cols-3"
                 error="teste msg com erro"
               >
-                <Input.Checkbox
+                <Form.Checkbox
                   value="teste"
                   name="checkbox"
                   label="valor checkbox"
                 />
-              </Input.Fieldset>
-            </Input.Group>
-            <Input.Group>
-              <Input.Radio label="valor radio" error="teste msg com erro" />
-            </Input.Group>
-            <Input.Group>
-              <Input.Fieldset
+              </Form.Fieldset>
+            </Form.Group>
+            <Form.Group>
+              <Form.Radio label="valor radio" error="teste msg com erro" />
+            </Form.Group>
+            <Form.Group>
+              <Form.Fieldset
                 legend="radio"
                 className="grid-cols-3"
                 error="teste msg com erro"
               >
-                <Input.Radio value="teste" label="valor radio" />
-              </Input.Fieldset>
-            </Input.Group>
+                <Form.Radio value="teste" label="valor radio" />
+              </Form.Fieldset>
+            </Form.Group>
+            <Form.Group>
+              <Form.Select
+                options={[1, 2, 3].map((value) => {
+                  return {
+                    value: String(value),
+                    label: `teste ${value}`,
+                  }
+                })}
+                error="teste msg com erro"
+              />
+            </Form.Group>
           </div>
           <div>
-            <Input.Group>
-              <Input.Input
+            <Form.Group>
+              <Form.Input
                 id="text"
                 placeholder="teste"
                 success={['teste msg com sucesso']}
               />
-            </Input.Group>
-            <Input.Group>
-              <Input.Textarea success />
-            </Input.Group>
-            <Input.Group>
-              <Input.Checkbox success label="valor checkbox" />
-            </Input.Group>
-            <Input.Group>
-              <Input.Fieldset
+            </Form.Group>
+            <Form.Group>
+              <Form.Textarea success />
+            </Form.Group>
+            <Form.Group>
+              <Form.Checkbox success label="valor checkbox" />
+            </Form.Group>
+            <Form.Group>
+              <Form.Fieldset
                 legend="Checkbox"
                 className="grid-cols-3"
                 success="teste msg com sucesso"
               >
-                <Input.Checkbox value="teste" label="valor checkbox" />
-              </Input.Fieldset>
-            </Input.Group>
-            <Input.Group>
-              <Input.Radio
-                label="valor radio"
-                success="teste msg com sucesso"
-              />
-            </Input.Group>
-            <Input.Group>
-              <Input.Fieldset
+                <Form.Checkbox value="teste" label="valor checkbox" />
+              </Form.Fieldset>
+            </Form.Group>
+            <Form.Group>
+              <Form.Radio label="valor radio" success="teste msg com sucesso" />
+            </Form.Group>
+            <Form.Group>
+              <Form.Fieldset
                 legend="Radio"
                 className="grid-cols-3"
                 success="teste msg com sucesso"
               >
-                <Input.Radio value="teste" label="valor radio" />
-              </Input.Fieldset>
-            </Input.Group>
+                <Form.Radio value="teste" label="valor radio" />
+              </Form.Fieldset>
+            </Form.Group>
+            <Form.Group>
+              <Form.Select
+                options={[1, 2, 3].map((value) => {
+                  return {
+                    value: String(value),
+                    label: `teste ${value}`,
+                  }
+                })}
+                success="teste msg com sucesso"
+              />
+            </Form.Group>
           </div>
         </div>
 
@@ -204,28 +240,40 @@ export default function FormPage() {
         </h2>
 
         <div className="grid grid-cols-2 gap-4">
-          <Input.Group>
-            <Input.Input placeholder="teste" disabled />
-          </Input.Group>
-          <Input.Group>
-            <Input.Textarea disabled />
-          </Input.Group>
-          <Input.Group>
-            <Input.Checkbox label="valor checkbox" disabled defaultChecked />
-          </Input.Group>
-          <Input.Group>
-            <Input.Fieldset legend="Checkbox" className="grid-cols-3" disabled>
-              <Input.Checkbox value="teste" label="valor checkbox" />
-            </Input.Fieldset>
-          </Input.Group>
-          <Input.Group>
-            <Input.Radio label="valor radio" disabled defaultChecked />
-          </Input.Group>
-          <Input.Group>
-            <Input.Fieldset legend="Radio" className="grid-cols-3" disabled>
-              <Input.Radio value="teste" label="valor radio" />
-            </Input.Fieldset>
-          </Input.Group>
+          <Form.Group>
+            <Form.Input placeholder="teste" disabled />
+          </Form.Group>
+          <Form.Group>
+            <Form.Textarea disabled />
+          </Form.Group>
+          <Form.Group>
+            <Form.Checkbox label="valor checkbox" disabled defaultChecked />
+          </Form.Group>
+          <Form.Group>
+            <Form.Fieldset legend="Checkbox" className="grid-cols-3" disabled>
+              <Form.Checkbox value="teste" label="valor checkbox" />
+            </Form.Fieldset>
+          </Form.Group>
+          <Form.Group>
+            <Form.Radio label="valor radio" disabled defaultChecked />
+          </Form.Group>
+          <Form.Group>
+            <Form.Fieldset legend="Radio" className="grid-cols-3" disabled>
+              <Form.Radio value="teste" label="valor radio" />
+            </Form.Fieldset>
+          </Form.Group>
+          <Form.Group>
+            <Form.Select
+              options={[1, 2, 3].map((value) => {
+                return {
+                  value: String(value),
+                  label: `teste ${value}`,
+                }
+              })}
+              value="2"
+              disabled
+            />
+          </Form.Group>
         </div>
       </Card.Content>
     </Card.Root>

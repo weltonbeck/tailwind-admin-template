@@ -2,17 +2,17 @@
 import { ComponentProps } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import { InputValidation, InputValidationProps } from './inputValidation'
+import { FormValidation, FormValidationProps } from './formValidation'
 
-type InputInputProps = ComponentProps<'input'> & InputValidationProps
+type FormInputProps = ComponentProps<'input'> & FormValidationProps
 
-export function InputInput({
+export function FormInput({
   success,
   error,
   className,
   name,
   ...props
-}: InputInputProps) {
+}: FormInputProps) {
   const formContext = useFormContext()
 
   return (
@@ -27,7 +27,7 @@ export function InputInput({
         {...props}
         {...(name && formContext ? { ...formContext.register(name) } : {})}
       />
-      <InputValidation error={error} success={success} />
+      <FormValidation error={error} success={success} />
     </div>
   )
 }
