@@ -1,19 +1,21 @@
 'use client'
 import { ComponentProps, useRef, useState } from 'react'
 import useOutsideClick from '@/helpers/useOutsideClick'
-import { ChevronDownIcon, ChevronUpIcon, XIcon } from 'lucide-react'
+import { ChevronDownIcon, ChevronUpIcon, SearchIcon, XIcon } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
+import { FormInput } from '../formInput'
 import { FormValidationProps } from '../formValidation'
 
 type ValueProps = string | string[] | null
 
 type OptionProps = {
-  value: ValueProps
+  value: string
   label: string
 }
 
 export type CustomSelectProps = ComponentProps<'select'> &
   FormValidationProps & {
+    allowSearch?: boolean
     placeholder?: string
     options?: OptionProps[]
     value?: ValueProps
@@ -30,24 +32,64 @@ export function CustomSelect({
   onBlur,
   value,
   disabled,
+  multiple,
+  allowSearch = false,
 }: CustomSelectProps) {
   const [isOpen, setOpen] = useState(false)
   const [selected, setSelected] = useState<ValueProps>(value || null)
+  const [search, setSearch] = useState<string>('')
 
   const selectRef = useRef(null)
   useOutsideClick(selectRef, () => {
-    setOpen(false)
+    onClose()
   })
 
-  function setValue(newValue: ValueProps) {
+  function setValue(newValue: string | null) {
     if (!disabled) {
-      setSelected(newValue)
-      if (onChange) {
-        onChange(newValue)
+      if (multiple) {
+        let currentSelected = selected
+        if (!Array.isArray(currentSelected) || !currentSelected) {
+          currentSelected = []
+        }
+        if (Array.isArray(currentSelected) && newValue) {
+          if (!currentSelected.includes(newValue)) {
+            currentSelected.push(newValue)
+          } else {
+            // remove caso já esteja la
+            currentSelected = currentSelected.filter(
+              (item) => item !== newValue,
+            )
+          }
+          setSelected(currentSelected)
+          if (onChange) {
+            onChange(currentSelected)
+          }
+        }
+      } else {
+        setSelected(newValue)
+        if (onChange) {
+          onChange(newValue)
+        }
       }
     }
+    onClose()
+  }
+
+  function onClose() {
+    setSearch('')
     setOpen(false)
   }
+
+  function getLabelFromValue(value: string) {
+    return options?.find((item) => item.value === value)?.label
+  }
+
+  const filteredOptions = options?.filter((item) => {
+    if (search) {
+      return item.label.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+    }
+    return true
+  })
 
   return (
     <div
@@ -70,12 +112,29 @@ export function CustomSelect({
           }
         }}
       >
-        <div>
-          {options?.find((item) => item.value === selected)?.label ||
-            placeholder}
+        <div className="flex flex-wrap gap-1">
+          {(!multiple && getLabelFromValue(String(selected))) || placeholder}
+          {multiple &&
+            Array.isArray(selected) &&
+            selected.map((item, i) => {
+              return (
+                <span
+                  key={i}
+                  className="inline-flex cursor-pointer rounded-lg bg-sky-500 px-2 py-1 pr-1 text-xs text-white"
+                  onClick={() => {
+                    setValue(String(item))
+                  }}
+                >
+                  {getLabelFromValue(String(item))}
+                  <i className="ml-1">
+                    <XIcon size={15} />
+                  </i>
+                </span>
+              )
+            })}
         </div>
         <div className="flex items-center gap-1 text-gray-600">
-          {!disabled && value && (
+          {!multiple && !disabled && value && (
             <i
               className="ml-auto cursor-pointer"
               onClick={() => {
@@ -92,20 +151,45 @@ export function CustomSelect({
           </i>
         </div>
       </div>
-      <div className="invisible absolute z-50 mt-1 max-h-0 w-full overflow-auto rounded border border-gray-300 shadow-lg transition-all group-data-[open=true]:visible group-data-[open=true]:max-h-[200px]">
-        <ul>
-          {options?.map((item) => (
+      <div className="invisible absolute z-50 mt-1 flex max-h-0 w-full flex-col overflow-hidden rounded border border-gray-400 shadow-lg transition-all group-data-[open=true]:visible group-data-[open=true]:max-h-[200px]">
+        {allowSearch && (
+          <div className="flex items-center gap-2 bg-gray-500 p-2">
+            <i className="text-white">
+              <SearchIcon />
+            </i>
+            <FormInput
+              placeholder="Buscar..."
+              value={search}
+              className="focus:border-gray-300"
+              onChange={(e) => {
+                setSearch((e.target as HTMLTextAreaElement).value)
+              }}
+            />
+          </div>
+        )}
+        <ul className="overflow-auto">
+          {filteredOptions?.map((item) => (
             <li
-              data-selected={selected === item.value}
+              data-selected={
+                (!multiple && selected === item.value) ||
+                (multiple &&
+                  Array.isArray(selected) &&
+                  selected.includes(item.value))
+              }
               key={String(item.value)}
               onClick={() => {
                 setValue(item.value)
               }}
-              className="cursor-pointer border-b border-gray-300 bg-gray-200 p-2 text-sm text-gray-700 last:border-0 hover:bg-gray-300 data-[selected=true]:bg-sky-500 data-[selected=true]:text-white"
+              className="cursor-pointer border-b border-gray-300 bg-gray-50 p-2 text-sm text-gray-700  last:border-0 hover:bg-gray-200 data-[selected=true]:bg-sky-500 data-[selected=true]:text-white"
             >
               {item.label}
             </li>
           ))}
+          {filteredOptions && filteredOptions?.length <= 0 && (
+            <li className="bg-gray-200 p-2 text-sm text-gray-700">
+              Nenhum item encontrado
+            </li>
+          )}
         </ul>
       </div>
     </div>
