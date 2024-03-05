@@ -151,7 +151,7 @@ export function CustomSelect({
           </i>
         </div>
       </div>
-      <div className="invisible absolute z-50 mt-1 flex max-h-0 w-full flex-col overflow-hidden rounded border border-gray-400 shadow-lg transition-all group-data-[open=true]:visible group-data-[open=true]:max-h-[200px]">
+      <div className="invisible absolute z-50 mt-1 flex max-h-0 w-full flex-col overflow-hidden rounded border border-gray-400 shadow-lg transition-all group-data-[open=true]:visible group-data-[open=true]:max-h-[250px]">
         {allowSearch && (
           <div className="flex items-center gap-2 bg-gray-500 p-2">
             <i className="text-white">
@@ -160,7 +160,7 @@ export function CustomSelect({
             <FormInput
               placeholder="Buscar..."
               value={search}
-              className="focus:border-gray-300"
+              className="py-1 focus:border-gray-300"
               onChange={(e) => {
                 setSearch((e.target as HTMLTextAreaElement).value)
               }}
@@ -180,7 +180,7 @@ export function CustomSelect({
               onClick={() => {
                 setValue(item.value)
               }}
-              className="cursor-pointer border-b border-gray-300 bg-gray-50 p-2 text-sm text-gray-700  last:border-0 hover:bg-gray-200 data-[selected=true]:bg-sky-500 data-[selected=true]:text-white"
+              className="cursor-pointer border-b border-gray-300 bg-gray-50 p-2 text-sm text-gray-700  last:border-0 hover:bg-sky-100 data-[selected=true]:bg-sky-500 data-[selected=true]:text-white"
             >
               {item.label}
             </li>

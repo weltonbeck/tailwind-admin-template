@@ -8,16 +8,17 @@ import { FilePenLineIcon } from 'lucide-react'
 
 export default function FormPage() {
   const methods = useForm({
-    // defaultValues: {
-    //   text: 'valor de teste',
-    //   textarea: 'valor de teste',
-    //   select: '2',
-    //   multiSelect: ['2', '4'],
-    //   checkbox: true,
-    //   multiCheckbox: '2',
-    //   radio: true,
-    //   multiRadio: '2',
-    // },
+    defaultValues: {
+      text: 'valor de teste',
+      textarea: 'valor de teste',
+      select: '2',
+      multiSelect: ['2', '4'],
+      checkbox: true,
+      multiCheckbox: '2',
+      radio: true,
+      multiRadio: '2',
+      slider: 3,
+    },
   })
 
   async function onSubmit(data: unknown) {
@@ -137,6 +138,17 @@ export default function FormPage() {
                   })}
                 />
               </Form.Group>
+
+              <Form.Group>
+                <Form.Label htmlFor="slider">Slider:</Form.Label>
+                <Form.Slider
+                  id="slider"
+                  name="slider"
+                  min={0}
+                  max={10}
+                  step={1}
+                />
+              </Form.Group>
             </div>
             <div className="mt-10 flex justify-center">
               <Button type="submit">Enviar</Button>
@@ -200,6 +212,14 @@ export default function FormPage() {
                 error="teste msg com erro"
               />
             </Form.Group>
+            <Form.Group>
+              <Form.Slider
+                min={0}
+                max={5}
+                step={1}
+                error="teste msg com erro"
+              />
+            </Form.Group>
           </div>
           <div>
             <Form.Group>
@@ -247,6 +267,14 @@ export default function FormPage() {
                 success="teste msg com sucesso"
               />
             </Form.Group>
+            <Form.Group>
+              <Form.Slider
+                min={0}
+                max={5}
+                step={1}
+                success="teste msg com sucesso"
+              />
+            </Form.Group>
           </div>
         </div>
 
@@ -290,6 +318,9 @@ export default function FormPage() {
               value="2"
               disabled
             />
+          </Form.Group>
+          <Form.Group>
+            <Form.Slider min={0} max={5} step={1} disabled />
           </Form.Group>
         </div>
       </Card.Content>
