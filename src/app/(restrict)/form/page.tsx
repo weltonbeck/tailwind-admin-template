@@ -18,6 +18,7 @@ export default function FormPage() {
       radio: true,
       multiRadio: '2',
       slider: 3,
+      toggle: true,
     },
   })
 
@@ -149,6 +150,10 @@ export default function FormPage() {
                   step={1}
                 />
               </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="toggle">Toggle:</Form.Label>
+                <Form.Toggle id="toggle" name="toggle" />
+              </Form.Group>
             </div>
             <div className="mt-10 flex justify-center">
               <Button type="submit">Enviar</Button>
@@ -220,6 +225,9 @@ export default function FormPage() {
                 error="teste msg com erro"
               />
             </Form.Group>
+            <Form.Group>
+              <Form.Toggle error="teste msg com erro" />
+            </Form.Group>
           </div>
           <div>
             <Form.Group>
@@ -275,6 +283,9 @@ export default function FormPage() {
                 success="teste msg com sucesso"
               />
             </Form.Group>
+            <Form.Group>
+              <Form.Toggle success="teste msg com sucesso" />
+            </Form.Group>
           </div>
         </div>
 
@@ -321,6 +332,9 @@ export default function FormPage() {
           </Form.Group>
           <Form.Group>
             <Form.Slider min={0} max={5} step={1} disabled />
+          </Form.Group>
+          <Form.Group>
+            <Form.Toggle disabled />
           </Form.Group>
         </div>
       </Card.Content>

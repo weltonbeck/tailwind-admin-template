@@ -51,7 +51,7 @@ export default async function TablePage({ searchParams }: searchParamsProps) {
               placeholder="Buscar..."
             />
             <Button type="submit" className="rounded-l-none">
-              <SearchIcon size={20} />
+              <SearchIcon size={20} strokeWidth={3} />
             </Button>
           </form>
         </div>

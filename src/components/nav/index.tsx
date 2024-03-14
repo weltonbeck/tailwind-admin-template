@@ -1,48 +1,12 @@
 'use client'
 import { useContext } from 'react'
+import { NAV } from '@/constants/nav'
 import { NavContext } from '@/contexts/nav'
-import {
-  XIcon,
-  LogOutIcon,
-  LayoutDashboardIcon,
-  FilePenLineIcon,
-  StickyNoteIcon,
-  ClipboardListIcon,
-} from 'lucide-react'
-import { NavItem, NavItemProps } from './navItem'
+import { XIcon } from 'lucide-react'
+import { NavItem } from './navItem'
 
 export function Nav() {
   const { show, toggleShow } = useContext(NavContext)
-
-  const menu: NavItemProps[] = [
-    {
-      active: true,
-      title: 'Dashboard',
-      icon: <LayoutDashboardIcon />,
-      href: '/dashboard',
-    },
-    { title: 'Formulario', icon: <FilePenLineIcon />, href: '/form' },
-    { title: 'Tabelas', icon: <ClipboardListIcon />, href: '/table' },
-    {
-      title: 'Paginas',
-      icon: <StickyNoteIcon />,
-      href: '/dashboard',
-      childrens: [
-        {
-          title: 'Login',
-          href: '/',
-        },
-        { title: 'Esqueci a senha', href: '/dashboard' },
-        { type: 'space' },
-        {
-          title: 'Erro 404',
-          href: '/404',
-        },
-      ],
-    },
-    { type: 'space' },
-    { title: 'Sair', icon: <LogOutIcon />, href: '/' },
-  ]
 
   return (
     <aside
@@ -61,7 +25,7 @@ export function Nav() {
       </header>
       <nav className="mt-6 font-medium text-white">
         <ul>
-          {menu.map((values, index) => {
+          {NAV.map((values, index) => {
             return <NavItem key={index} {...values} />
           })}
         </ul>

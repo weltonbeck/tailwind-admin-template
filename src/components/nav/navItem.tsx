@@ -1,14 +1,8 @@
 import Link from 'next/link'
+import { NavProps } from '@/constants/nav'
 import { PlusSquareIcon, MinusSquareIcon } from 'lucide-react'
 
-export type NavItemProps = {
-  active?: boolean
-  type?: 'space' | 'default'
-  href?: string
-  title?: string
-  icon?: React.ReactNode
-  childrens?: NavItemProps[]
-}
+export type NavItemProps = NavProps
 
 function NavItemChild({
   type = 'default',
@@ -71,7 +65,7 @@ export function NavItem({
             <>
               <PlusSquareIcon
                 size={15}
-                className="ml-auto  hover:hidden group-data-[active=true]:hidden"
+                className="ml-auto  group-hover:hidden group-data-[active=true]:hidden"
               />
               <MinusSquareIcon
                 size={15}

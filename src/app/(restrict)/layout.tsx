@@ -4,6 +4,7 @@ import { Nav } from '@/components/nav'
 import { NavProvider } from '@/contexts/nav'
 
 import '@/styles/globals.css'
+import { Breadcrumb } from '@/components/breadcrumb'
 
 export const metadata: Metadata = {
   title: 'Tailwind Admin Template',
@@ -18,14 +19,14 @@ export default function RestricLayout({
   return (
     <html lang="pt-BR">
       <body className="font-sans text-gray-700">
-        <section className="bg-gray-300">
+        <section className="bg-gray-50">
           <NavProvider>
             <div className="flex">
               <Nav />
               <div className="grow">
                 <Header />
                 <main className="m-4 mt-6">
-                  <div className="mb-4">Breadcrumb</div>
+                  <Breadcrumb />
                   {children}
                 </main>
               </div>

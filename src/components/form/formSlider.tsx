@@ -53,6 +53,8 @@ export function FormSlider({
             [&::-webkit-slider-thumb]:cursor-pointer
             [&::-webkit-slider-thumb]:rounded-full
             [&::-webkit-slider-thumb]:bg-sky-500
+            [&::-webkit-slider-thumb]:disabled:bg-gray-500
+            [&::-webkit-slider-thumb]:disabled:cursor-not-allowed
             [&::-webkit-slider-thumb]:transition-all
             [&::-webkit-slider-thumb]:duration-150
             [&::-webkit-slider-thumb]:ease-in-out
@@ -65,9 +67,11 @@ export function FormSlider({
             [&::-moz-range-thumb]:cursor-pointer
             [&::-moz-range-thumb]:rounded-full
             [&::-moz-range-thumb]:bg-sky-500
-          [&::-moz-range-thumb]:transition-all
-          [&::-moz-range-thumb]:duration-150
-          [&::-moz-range-thumb]:ease-in-out
+            [&::-moz-range-thumb]:disabled:bg-gray-500
+            [&::-moz-range-thumb]:disabled:cursor-not-allowed
+            [&::-moz-range-thumb]:transition-all
+            [&::-moz-range-thumb]:duration-150
+            [&::-moz-range-thumb]:ease-in-out
           `,
               className,
             )}

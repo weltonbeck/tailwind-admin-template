@@ -7,6 +7,7 @@ import { FormRadio } from './formRadio'
 import { FormSelect } from './formSelect/index'
 import { FormSlider } from './formSlider'
 import { FormTextarea } from './formTextarea'
+import { FormToggle } from './formToggle'
 
 export const Form = {
   Group: FormGroup,
@@ -18,4 +19,5 @@ export const Form = {
   Radio: FormRadio,
   Select: FormSelect,
   Slider: FormSlider,
+  Toggle: FormToggle,
 }
