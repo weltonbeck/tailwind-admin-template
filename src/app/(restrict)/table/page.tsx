@@ -37,13 +37,13 @@ export default async function TablePage({ searchParams }: searchParamsProps) {
         Tabelas
       </Card.Header>
       <Card.Content className="mb-10">
-        <div className="mb-12 grid grid-cols-2 gap-4">
-          <div className="flex">
+        <div className="mb-12 flex flex-col-reverse gap-4 md:flex-row">
+          <div className="flex flex-1">
             <Button color="primary" asChild>
               <Link href="/form">Adicionar</Link>
             </Button>
           </div>
-          <form className="flex" method="get">
+          <form className="flex flex-1" method="get">
             <Form.Input
               type="text"
               name="search"
@@ -67,6 +67,7 @@ export default async function TablePage({ searchParams }: searchParamsProps) {
               field: 'name',
               title: 'Nome',
               filter: true,
+              showMobile: true,
             },
             {
               title: 'Link',

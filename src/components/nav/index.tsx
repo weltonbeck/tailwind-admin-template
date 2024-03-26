@@ -12,16 +12,13 @@ export function Nav() {
     <aside
       aria-label="Sidebar menu"
       data-open={show}
-      className="fixed left-0 top-0 z-40 h-auto min-h-screen w-52 translate-x-0 bg-gray-600 transition-transform max-md:data-[open=false]:-translate-x-full md:relative"
+      className="fixed left-0 top-0 z-40 size-full min-h-screen min-w-52 translate-x-0 bg-gray-600 transition-transform max-md:data-[open=false]:-translate-x-full md:relative md:h-auto md:w-52"
     >
-      <header className="h-14 bg-primary-600 p-4 text-white shadow-lg">
-        <button
-          onClick={() => toggleShow()}
-          className="fixed left-44 top-4  md:invisible"
-        >
+      <header className="flex h-14 justify-between bg-primary-600 p-4 text-white shadow-lg">
+        <h2 className="font-medium">Painel Administrativo</h2>
+        <button onClick={() => toggleShow()} className="md:hidden">
           <XIcon />
         </button>
-        <h2 className="font-medium">Painel Administrativo</h2>
       </header>
       <nav className="mt-6 font-medium text-white">
         <ul>

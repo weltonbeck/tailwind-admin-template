@@ -18,7 +18,13 @@ export function Pagination({
   ...props
 }: PaginationProps) {
   return (
-    <div className={twMerge('flex justify-between', className)} {...props}>
+    <div
+      className={twMerge(
+        'flex justify-between flex-col md:flex-row gap-4 items-center md:items-start',
+        className,
+      )}
+      {...props}
+    >
       <PaginationInfo pagination={pagination} />
       <PaginationNav pagination={pagination} />
     </div>

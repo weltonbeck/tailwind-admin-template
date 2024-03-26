@@ -84,8 +84,6 @@ export default function Dashboard() {
         <div className="mb-8 flex flex-wrap items-start justify-center">
           <Button loading />
         </div>
-
-        <hr className="my-8 border-primary-500" />
       </Card.Content>
       <Card.Footer>
         <Button className="ml-auto">teste</Button>

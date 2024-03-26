@@ -1,11 +1,40 @@
 import { ComponentProps } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { tv, VariantProps } from 'tailwind-variants'
 
-type FormGroupProps = ComponentProps<'div'>
+const div = tv({
+  base: 'col-span-12',
+  variants: {
+    grid: {
+      col1: 'col-span-12 md:col-span-1',
+      col2: 'col-span-12 md:col-span-2',
+      col3: 'col-span-12 md:col-span-3',
+      col4: 'col-span-12 md:col-span-4',
+      col5: 'col-span-12 md:col-span-5',
+      col6: 'col-span-12 md:col-span-6',
+      col7: 'col-span-12 md:col-span-7',
+      col8: 'col-span-12 md:col-span-8',
+      col9: 'col-span-12 md:col-span-9',
+      col10: 'col-span-12 md:col-span-10',
+      col11: 'col-span-12 md:col-span-11',
+      col12: 'col-span-12',
+    },
+  },
+  defaultVariants: {
+    grid: 'col12',
+  },
+})
 
-export function FormGroup({ className, ...props }: FormGroupProps) {
+type FormGroupProps = ComponentProps<'div'> & VariantProps<typeof div>
+
+export function FormGroup({ grid, className, ...props }: FormGroupProps) {
   return (
-    <div className={twMerge('mb-2', className)} {...props}>
+    <div
+      className={div({
+        grid,
+        className,
+      })}
+      {...props}
+    >
       {props.children}
     </div>
   )

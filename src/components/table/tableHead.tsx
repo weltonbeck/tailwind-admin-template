@@ -28,12 +28,19 @@ export function TableHead({ cols = [] }: TableProps) {
       <tr>
         {cols.map((el, index) => {
           return (
-            <th key={index} className="p-2">
+            <th
+              key={index}
+              className={
+                el.showMobile || index === 0
+                  ? 'p-2'
+                  : 'hidden p-2 md:table-cell'
+              }
+            >
               <div className="flex items-center">
                 {el.title}
-                {el.filter && (
+                {el.filter && el.field && (
                   <button
-                    onClick={() => setOrdenation(el.field)}
+                    onClick={() => setOrdenation(String(el.field))}
                     className="ml-2 text-primary-300 hover:text-primary-200 active:text-primary-50"
                   >
                     {orderField === el.field && (

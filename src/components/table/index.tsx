@@ -8,6 +8,7 @@ export type TableProps = ComponentProps<'table'> & {
     title: string
     field?: string
     filter?: boolean
+    showMobile?: boolean
   }[]
   rows?: React.ReactNode[][]
 }
@@ -27,7 +28,7 @@ export function Table({
       {...props}
     >
       <TableHead cols={cols} />
-      <TableBody rows={rows} />
+      <TableBody rows={rows} cols={cols} />
     </table>
   )
 }

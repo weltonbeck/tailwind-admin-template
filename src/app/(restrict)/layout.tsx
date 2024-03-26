@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
+import { Breadcrumb } from '@/components/breadcrumb'
 import { Header } from '@/components/header'
 import { Nav } from '@/components/nav'
 import { NavProvider } from '@/contexts/nav'
 
 import '@/styles/globals.css'
-import { Breadcrumb } from '@/components/breadcrumb'
 
 export const metadata: Metadata = {
   title: 'Tailwind Admin Template',

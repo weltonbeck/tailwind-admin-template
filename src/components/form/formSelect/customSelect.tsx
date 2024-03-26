@@ -151,7 +151,14 @@ export function CustomSelect({
           </i>
         </div>
       </div>
-      <div className="invisible absolute z-50 mt-1 flex max-h-0 w-full flex-col overflow-hidden rounded border border-gray-400 shadow-lg transition-all group-data-[open=true]:visible group-data-[open=true]:max-h-[250px]">
+      {/* invisible absolute z-50 mt-1 flex max-h-0 w-full flex-col overflow-hidden rounded border border-gray-400 shadow-lg transition-all group-data-[open=true]:visible group-data-[open=true]:max-h-[250px] */}
+      <div className="invisible fixed inset-0 z-50 flex max-h-screen flex-col overflow-hidden rounded border border-gray-400 bg-black/85 p-5 shadow-lg transition-all  group-data-[open=true]:visible md:absolute md:inset-auto md:mt-1  md:max-h-0 md:min-h-0 md:w-full md:p-0 md:group-data-[open=true]:max-h-[250px]">
+        <div
+          className="mb-4 ml-auto cursor-pointer text-white md:hidden"
+          onClick={onClose}
+        >
+          <XIcon size={30} />
+        </div>
         {allowSearch && (
           <div className="flex items-center gap-2 bg-gray-500 p-2">
             <i className="text-white">

@@ -27,7 +27,7 @@ export const NAV: NavProps[] = [
   {
     title: 'Páginas',
     icon: <StickyNoteIcon />,
-    href: '/dashboard',
+    href: '/',
     childrens: [
       {
         title: 'Login',

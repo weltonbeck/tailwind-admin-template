@@ -22,18 +22,18 @@ export function Header() {
         </span>
         <ul className="invisible absolute right-0 z-50 min-w-36 overflow-hidden rounded-md border border-gray-300 bg-white text-sm group-hover:visible">
           <li className="text-center  hover:bg-primary-100">
-            <Link href="#" className="block px-2 py-1">
+            <Link href="/" className="block px-2 py-1">
               Editar Perfil
             </Link>
           </li>
           <li className=" text-center  hover:bg-primary-100">
-            <Link href="#" className="block px-2 py-1">
+            <Link href="/" className="block px-2 py-1">
               Editar senha
             </Link>
           </li>
           <li className="border-b border-gray-300 text-center last:border-none"></li>
           <li className="text-center hover:bg-primary-100">
-            <Link href="#" className="block px-2 py-1">
+            <Link href="/" className="block px-2 py-1">
               Sair
             </Link>
           </li>
