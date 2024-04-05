@@ -1,3 +1,4 @@
+'use client'
 import { ComponentProps } from 'react'
 import { FormProvider, UseFormReturn } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'

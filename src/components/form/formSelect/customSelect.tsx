@@ -15,11 +15,14 @@ type OptionProps = {
 
 export type CustomSelectProps = ComponentProps<'select'> &
   FormValidationProps & {
-    allowSearch?: boolean
+    search?: boolean
     placeholder?: string
     options?: OptionProps[]
     value?: ValueProps
     onChange?: (value: ValueProps) => void
+    disabled?: boolean
+    multiple?: boolean
+    name?: string
   }
 
 export function CustomSelect({
@@ -33,11 +36,12 @@ export function CustomSelect({
   value,
   disabled,
   multiple,
-  allowSearch = false,
+  search = false,
+  ...props
 }: CustomSelectProps) {
   const [isOpen, setOpen] = useState(false)
   const [selected, setSelected] = useState<ValueProps>(value || null)
-  const [search, setSearch] = useState<string>('')
+  const [searchValue, setSearchValue] = useState<string>('')
 
   const selectRef = useRef(null)
   useOutsideClick(selectRef, () => {
@@ -76,7 +80,7 @@ export function CustomSelect({
   }
 
   function onClose() {
-    setSearch('')
+    setSearchValue('')
     setOpen(false)
   }
 
@@ -85,8 +89,10 @@ export function CustomSelect({
   }
 
   const filteredOptions = options?.filter((item) => {
-    if (search) {
-      return item.label.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+    if (searchValue) {
+      return item.label
+        .toLocaleLowerCase()
+        .includes(searchValue.toLocaleLowerCase())
     }
     return true
   })
@@ -101,6 +107,22 @@ export function CustomSelect({
       data-disabled={disabled}
       onBlur={onBlur}
     >
+      <select
+        value={(selected as string | string[]) || undefined}
+        multiple={!!multiple}
+        disabled={!!disabled}
+        onChange={(e) => {
+          setValue(String(e.target.value))
+        }}
+        {...props}
+        className="hidden"
+      >
+        {filteredOptions?.map((item, i) => (
+          <option key={i} value={item.value}>
+            {item.label}
+          </option>
+        ))}
+      </select>
       <div
         className={twMerge(
           'w-full flex justify-between rounded border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-500 transition duration-200 ease-in-out disabled:bg-gray-200 disabled:cursor-not-allowed group-data-[error=true]:border-rose-500 group-data-[error=true]:bg-rose-50 group-data-[success=true]:border-teal-500 group-data-[success=true]:bg-teal-50 group-data-[disabled=true]:bg-gray-200 group-data-[disabled=true]:cursor-not-allowed',
@@ -151,7 +173,6 @@ export function CustomSelect({
           </i>
         </div>
       </div>
-      {/* invisible absolute z-50 mt-1 flex max-h-0 w-full flex-col overflow-hidden rounded border border-gray-400 shadow-lg transition-all group-data-[open=true]:visible group-data-[open=true]:max-h-[250px] */}
       <div className="invisible fixed inset-0 z-50 flex max-h-screen flex-col overflow-hidden rounded border border-gray-400 bg-black/85 p-5 shadow-lg transition-all  group-data-[open=true]:visible md:absolute md:inset-auto md:mt-1  md:max-h-0 md:min-h-0 md:w-full md:p-0 md:group-data-[open=true]:max-h-[250px]">
         <div
           className="mb-4 ml-auto cursor-pointer text-white md:hidden"
@@ -159,17 +180,17 @@ export function CustomSelect({
         >
           <XIcon size={30} />
         </div>
-        {allowSearch && (
+        {search && (
           <div className="flex items-center gap-2 bg-gray-500 p-2">
             <i className="text-white">
               <SearchIcon />
             </i>
             <FormInput
               placeholder="Buscar..."
-              value={search}
+              value={searchValue}
               className="py-1 focus:border-gray-300"
               onChange={(e) => {
-                setSearch((e.target as HTMLTextAreaElement).value)
+                setSearchValue((e.target as HTMLTextAreaElement).value)
               }}
             />
           </div>

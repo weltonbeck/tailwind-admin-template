@@ -25,7 +25,9 @@ export function FormInput({
           className,
         )}
         {...props}
-        {...(name && formContext ? { ...formContext.register(name) } : {})}
+        {...(name && formContext
+          ? { ...formContext.register(name) }
+          : { name })}
       />
       <FormValidation error={error} success={success} />
     </div>

@@ -80,13 +80,17 @@ export function FormSlider({
               ? {
                   ...formContext.register(name, {
                     onChange: (e) => {
-                      setSelected(Number(e.target.value))
+                      if (!disabled) {
+                        setSelected(Number(e.target.value))
+                      }
                     },
                   }),
                 }
               : {
                   onChange: (e) => {
-                    setSelected(Number(e.target.value))
+                    if (!disabled) {
+                      setSelected(Number(e.target.value))
+                    }
                   },
                 })}
           />
